@@ -3,33 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prosta Strona</title>
+    <title>Moja Strona z Pythona</title>
     <style>
-        /* Tło z serduszkami za pomocą CSS */
         body {
-            height: 100vh; /* 100% wysokości widocznej strony */
-            margin: 0;
-            display: flex;
-            justify-content: center; /* Wyśrodkowanie poziome */
-            align-items: center; /* Wyśrodkowanie pionowe */
-            background-color: #ffe6e6; /* Kolor tła */
-            background-image: 
-                linear-gradient(45deg, #ff4d4d 25%, transparent 25%), 
-                linear-gradient(-45deg, #ff4d4d 25%, transparent 25%);
-            background-size: 50px 50px;
             font-family: Arial, sans-serif;
-            color: green; /* Kolor tekstu */
-            text-align: center;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
         }
-
-        /* Stylowanie nagłówka */
+        .container {
+            text-align: center;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
         h1 {
-            font-size: 4em; /* Duży rozmiar czcionki */
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Cień dla tekstu */
+            color: #4A90E2;
         }
     </style>
 </head>
 <body>
-    <h1>Dawaj ziomek zajaramy</h1>
+    <div class="container">
+        <h1>Witaj na mojej stronie!</h1>
+        <p>Ten plik HTML został wrzucony do sieci za pomocą GitHuba.</p>
+    </div>
 </body>
 </html>
