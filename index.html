@@ -10,10 +10,10 @@
     <style>
         /* --- Style Ogólne --- */
         :root {
-            --primary-red: #e31b23; /* Główny czerwony akcent (pobrany z loga) */
-            --dark-bg: #000000;    /* Główny głęboki czarny */
+            --primary-red: #e31b23; /* Czerwony z Twojego loga */
+            --dark-bg: #000000;    /* Głęboki czarny */
             --dark-card: #0a0a0a;  /* Troszkę jaśniejszy czarny dla kart */
-            --silver-text: #cccccc; /* Srebrzysty tekst do opisów (pobrany z loga) */
+            --silver-text: #cccccc; /* Srebrzysty tekst jak napis w logo */
             --text-light: #ffffff; /* Biały tekst */
         }
 
@@ -57,8 +57,7 @@
             align-items: center;
         }
 
-        /* Tekstowe logo w barze, nawiązujące do grafiki */
-        .logo {
+        .logo-text {
             font-size: 26px;
             font-family: 'Oswald', sans-serif;
             color: var(--text-light);
@@ -66,7 +65,7 @@
             letter-spacing: 1px;
         }
 
-        .logo span {
+        .logo-text span {
             color: var(--primary-red);
         }
 
@@ -89,7 +88,7 @@
             color: var(--primary-red);
         }
 
-        /* --- Sekcja HERO (Centralne Logo) --- */
+        /* --- Sekcja HERO (Przywrócone zdjęcie tła + Wkomponowane Logo) --- */
         .hero {
             height: 100vh; /* Na całą wysokość ekranu */
             display: flex;
@@ -97,8 +96,12 @@
             align-items: center;
             text-align: center;
             
-            /* TŁO: Głęboki czarny, aby logo z czerwoną aurą idealnie pasowało */
-            background-color: var(--dark-bg);
+            /* TŁO: Poniżej link do fajnego, ciemnego zdjęcia samochodu. Możesz je zmienić później */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1549399542-7e3f8b79c341?q=80&w=1920');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Efekt paralaksy */
+            
             padding-top: 80px; /* Miejsce na fixed header */
         }
 
@@ -109,12 +112,15 @@
             justify-content: center;
         }
 
-        /* Ustawienie loga, aby było duże i centralne */
+        /* Stylizacja Loga do wkomponowania w tło */
         .hero-logo {
-            max-width: 600px; /* Ustal maksymalną szerokość dla dużych ekranów */
-            width: 90%; /* Responsywna szerokość na mniejszych ekranach */
+            max-width: 500px; /* Rozmiar loga na ekranie */
+            width: 90%; /* Responsywna szerokość */
             height: auto;
-            margin-bottom: 30px; /* Miejsce pod logo na przycisk */
+            margin-bottom: 20px;
+            
+            /* KLUCZOWY EFEKT: Dodajemy czerwoną aureolę (halo), żeby logo "odcięło się" od zdjęcia tła */
+            filter: drop-shadow(0 0 15px rgba(227, 27, 35, 0.6));
         }
 
         /* Przyciski */
@@ -129,6 +135,7 @@
             border-radius: 5px;
             transition: background 0.3s, transform 0.2s;
             font-family: 'Oswald', sans-serif;
+            margin-top: 10px;
         }
 
         .btn:hover {
@@ -136,7 +143,7 @@
             transform: translateY(-3px);
         }
 
-        /* --- Sekcje Główne --- */
+        /* --- Sekcje Główne (Pozostawione z poprzedniego fajnego wyglądu) --- */
         section {
             padding: 100px 0;
         }
@@ -152,7 +159,7 @@
             padding-bottom: 15px;
         }
 
-        /* Usługi - lekkie wyostrzenie stylu */
+        /* Usługi */
         .services-grid {
             display: flex;
             gap: 40px;
@@ -182,7 +189,7 @@
         }
 
         .service-card p {
-            color: var(--silver-text); /* Srebrzysty tekst dla lepszego kontrastu */
+            color: var(--silver-text); /* Srebrzysty tekst */
             font-size: 15px;
         }
 
@@ -229,7 +236,7 @@
         /* Responsywność dla mniejszych ekranów */
         @media (max-width: 768px) {
             .hero-logo {
-                max-width: 400px;
+                max-width: 350px;
             }
             .section-title {
                 font-size: 32px;
@@ -255,7 +262,7 @@
 
     <header>
         <div class="container">
-            <a href="#" class="logo">DAV<span>PER</span></a>
+            <a href="#" class="logo-text">DAV<span>PER</span></a>
             <nav>
                 <ul>
                     <li><a href="#home">Start</a></li>
@@ -265,3 +272,73 @@
             </nav>
         </div>
     </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <img src="logo.png" alt="DAVPER GARAGE Logo" class="hero-logo">
+            
+            <a href="#kontakt" class="btn">Umów wizytę</a>
+        </div>
+    </section>
+
+    <section id="uslugi">
+        <div class="container">
+            <h2 class="section-title"><span>Nasze Usługi</span></h2>
+            <div class="services-grid">
+                
+                <div class="service-card">
+                    <h3>Auto Detailing</h3>
+                    <p>Pełna korekta lakieru, nakładanie zaawansowanych powłok ceramicznych, woskowanie premium, profesjonalne czyszczenie i konserwacja wnętrza.</p>
+                </div>
+                
+                <div class="service-card">
+                    <h3>Mechanika</h3>
+                    <p>Serwis olejowy, naprawa zawieszenia i układów hamulcowych, zaawansowana diagnostyka komputerowa, serwis klimatyzacji.</p>
+                </div>
+
+                <div class="service-card">
+                    <h3>Pielęgnacja</h3>
+                    <p>Mycie detailingowe, pranie tapicerki skórzanej i materiałowej, zabezpieczanie felg, hydrofobizacja szyb.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="kontakt">
+        <div class="container">
+            <h2 class="section-title"><span>Skontaktuj się</span></h2>
+            <p style="color: var(--silver-text); font-size: 16px;">Zadzwoń do nas lub odwiedź naszą stację!</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h4>Adres</h4>
+                    <p>ul. Garażowa 15</p>
+                    <p>00-001 Miasto</p>
+                </div>
+                <div class="contact-item">
+                    <h4>Telefon</h4>
+                    <p>+48 123 456 789</p>
+                    <p>+48 987 654 321</p>
+                </div>
+                <div class="contact-item">
+                    <h4>Godziny pracy</h4>
+                    <p>Pn - Pt: 8:00 - 18:00</p>
+                    <p>Sob: 9:00 - 14:00</p>
+                </div>
+            </div>
+            
+            <div style="margin-top: 60px;">
+                <a href="tel:+48123456789" class="btn">Zadzwoń teraz</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 DAVPER GARAGE. Wszystkie prawa zastrzeżone.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
