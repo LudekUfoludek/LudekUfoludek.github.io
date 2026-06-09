@@ -3,34 +3,320 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moja Strona</title>
+    <title>AutoGloss & Mechanika - Profesjonalny Detailing i Serwis</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Oswald:wght@500&display=swap" rel="stylesheet">
+    
     <style>
+        /* --- Style Ogólne --- */
+        :root {
+            --primary-red: #e31b23; /* Główny czerwony akcent */
+            --dark-bg: #111111;    /* Główny czarny background */
+            --dark-card: #1a1a1a;  /* Troszkę jaśniejszy czarny dla kart */
+            --text-light: #ffffff; /* Biały tekst */
+            --text-muted: #aaaaaa; /* Szary tekst */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+
+        /* --- Nawigacja --- */
+        header {
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--primary-red);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-family: 'Oswald', sans-serif;
+            color: var(--text-light);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--primary-red);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: bold;
+            transition: color 0.3s;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            color: var(--primary-red);
+        }
+
+        /* --- Sekcja HERO (Zdjęcie na górze) --- */
+        .hero {
+            height: 100vh; /* Na całą wysokość ekranu */
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .container {
             text-align: center;
-            background: white;
+            
+            /* TŁO: Poniżej link do przykładowego zdjęcia. Zmień url(...) na swoje zdjecie */
+            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1549399542-7e3f8b79c341?q=80&w=1920');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed; /* Efekt paralaksy (tło stoi w miejscu przy skrolowaniu) */
+            
+            padding-top: 80px; /* Miejsce na fixed header */
+        }
+
+        .hero-content h1 {
+            font-size: 50px;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: 18px;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Przyciski */
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--primary-red);
+            color: white;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #b7151a;
+            transform: translateY(-2px);
+        }
+
+        /* --- Sekcje Główne --- */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 50px;
+        }
+
+        .section-title span {
+            border-bottom: 3px solid var(--primary-red);
+            padding-bottom: 10px;
+        }
+
+        /* Usługi */
+        .services-grid {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap; /* Responsywność */
+        }
+
+        .service-card {
+            flex: 1; /* Równa szerokość */
+            min-width: 280px;
+            background-color: var(--dark-card);
             padding: 40px;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border: 1px solid transparent;
+            transition: border-color 0.3s, transform 0.3s;
         }
-        h1 {
-            color: #4A90E2;
+
+        .service-card:hover {
+            border-color: var(--primary-red);
+            transform: translateY(-5px);
+        }
+
+        .service-card h3 {
+            color: var(--primary-red);
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .service-card p {
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+
+        /* --- Kontakt --- */
+        #kontakt {
+            background-color: var(--dark-card);
+            text-align: center;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .contact-item {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .contact-item h4 {
+            color: var(--primary-red);
+            margin-bottom: 10px;
+            font-family: 'Oswald', sans-serif;
+        }
+
+        /* --- Stopka --- */
+        footer {
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 30px 0;
+            text-align: center;
+            border-top: 1px solid #333;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* Responsywność dla mniejszych ekranów */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 32px;
+            }
+            .services-grid {
+                flex-direction: column;
+            }
+            .container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            nav ul {
+                gap: 10px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Witaj na mojej stronie!</h1>
-        <p>Strona działa prawidłowo na GitHub Pages.</p>
-    </div>
+
+    <header>
+        <div class="container">
+            <a href="#" class="logo">Auto<span>Gloss</span></a>
+            <nav>
+                <ul>
+                    <li><a href="#home">Start</a></li>
+                    <li><a href="#uslugi">Usługi</a></li>
+                    <li><a href="#kontakt">Kontakt</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Detailing & Mechanika</h1>
+            <p>Przywracamy blask Twojemu samochodowi i dbamy o jego serce. Najwyższa jakość usług w jednym miejscu.</p>
+            <a href="#kontakt" class="btn">Umów wizytę</a>
+        </div>
+    </section>
+
+    <section id="uslugi">
+        <div class="container">
+            <h2 class="section-title"><span>Nasze Usługi</span></h2>
+            <div class="services-grid">
+                
+                <div class="service-card">
+                    <h3>Auto Detailing</h3>
+                    <p>Korekta lakieru, nakładanie powłok ceramicznych, woskowanie, profesjonalne czyszczenie wnętrza.</p>
+                </div>
+                
+                <div class="service-card">
+                    <h3>Mechanika</h3>
+                    <p>Wymiana oleju, naprawa zawieszenia, układów hamulcowych, diagnostyka komputerowa silnika.</p>
+                </div>
+
+                <div class="service-card">
+                    <h3>Pielęgnacja</h3>
+                    <p>Mycie detailingowe, pranie tapicerki, zabezpieczanie felg i szyb (tzw. niewidzialna wycieraczka).</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="kontakt">
+        <div class="container">
+            <h2 class="section-title"><span>Skontaktuj się</span></h2>
+            <p style="color: var(--text-muted);">Zadzwoń do nas lub odwiedź nasz warsztat!</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h4>Adres</h4>
+                    <p>ul. Garażowa 15</p>
+                    <p>00-001 Miasto</p>
+                </div>
+                <div class="contact-item">
+                    <h4>Telefon</h4>
+                    <p>+48 123 456 789</p>
+                    <p>+48 987 654 321</p>
+                </div>
+                <div class="contact-item">
+                    <h4>Godziny pracy</h4>
+                    <p>Pn - Pt: 8:00 - 18:00</p>
+                    <p>Sob: 9:00 - 14:00</p>
+                </div>
+            </div>
+            
+            <div style="margin-top: 50px;">
+                <a href="tel:+48123456789" class="btn">Zadzwoń teraz</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 AutoGloss & Mechanika. Wszystkie prawa zastrzeżone.</p>
+        </div>
+    </footer>
+
 </body>
 </html>
