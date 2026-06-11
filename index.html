@@ -1,344 +1,518 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DAVPER GARAGE - Profesjonalny Serwis & Detailing</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
-    
-    <style>
-        /* --- Style Ogólne --- */
-        :root {
-            --primary-red: #e31b23; /* Czerwony z Twojego loga */
-            --dark-bg: #000000;    /* Głęboki czarny */
-            --dark-card: #0a0a0a;  /* Troszkę jaśniejszy czarny dla kart */
-            --silver-text: #cccccc; /* Srebrzysty tekst jak napis w logo */
-            --text-light: #ffffff; /* Biały tekst */
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Montserrat', sans-serif;
-            background-color: var(--dark-bg);
-            color: var(--text-light);
-            line-height: 1.6;
-        }
-
-        h1, h2, h3 {
-            font-family: 'Oswald', sans-serif;
-            text-transform: uppercase;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        /* --- Nawigacja --- */
-        header {
-            background-color: rgba(0, 0, 0, 0.95);
-            padding: 15px 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 2px solid var(--primary-red);
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo-text {
-            font-size: 26px;
-            font-family: 'Oswald', sans-serif;
-            color: var(--text-light);
-            text-decoration: none;
-            letter-spacing: 1px;
-        }
-
-        .logo-text span {
-            color: var(--primary-red);
-        }
-
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 25px;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: var(--text-light);
-            font-weight: bold;
-            transition: color 0.3s;
-            font-size: 14px;
-            text-transform: uppercase;
-        }
-
-        nav a:hover {
-            color: var(--primary-red);
-        }
-
-        /* --- Sekcja HERO (Centralne Logo) --- */
-        .hero {
-            height: 100vh; /* Na całą wysokość ekranu */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            
-            /* TŁO: Poniżej link do ciemnego zdjęcia, możesz je zmienić później */
-            background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1549399542-7e3f8b79c341?q=80&w=1920');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed; /* Efekt paralaksy */
-            
-            padding-top: 80px; /* Miejsce na fixed header */
-        }
-
-        .hero-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* Stylizacja Loga do wkomponowania w tło */
-        .hero-logo {
-            max-width: 500px; /* Rozmiar loga na ekranie */
-            width: 90%; /* Responsywna szerokość */
-            height: auto;
-            margin-bottom: 20px;
-            
-            /* KLUCZOWY EFEKT: Miękka, czerwona aureola (halo), żeby logo "odcięło się" od zdjęcia tła */
-            filter: drop-shadow(0 0 15px rgba(227, 27, 35, 0.6));
-        }
-
-        /* Przyciski */
-        .btn {
-            display: inline-block;
-            padding: 15px 35px;
-            background-color: var(--primary-red);
-            color: white;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-weight: bold;
-            border-radius: 5px;
-            transition: background 0.3s, transform 0.2s;
-            font-family: 'Oswald', sans-serif;
-            margin-top: 10px;
-        }
-
-        .btn:hover {
-            background-color: #b7151a;
-            transform: translateY(-3px);
-        }
-
-        /* --- Sekcje Główne (Usługi i Kontakt) --- */
-        section {
-            padding: 100px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 40px;
-            margin-bottom: 60px;
-        }
-
-        .section-title span {
-            border-bottom: 4px solid var(--primary-red);
-            padding-bottom: 15px;
-        }
-
-        /* Usługi */
-        .services-grid {
-            display: flex;
-            gap: 40px;
-            flex-wrap: wrap; /* Responsywność */
-            margin-top: 30px;
-        }
-
-        .service-card {
-            flex: 1; /* Równa szerokość */
-            min-width: 280px;
-            background-color: var(--dark-card);
-            padding: 50px;
-            border-radius: 10px;
-            border: 2px solid transparent;
-            transition: border-color 0.3s, transform 0.3s;
-        }
-
-        .service-card:hover {
-            border-color: var(--primary-red);
-            transform: translateY(-5px);
-        }
-
-        .service-card h3 {
-            color: var(--primary-red);
-            margin-bottom: 20px;
-            font-size: 22px;
-        }
-
-        .service-card p {
-            color: var(--silver-text); /* Srebrzysty tekst */
-            font-size: 15px;
-        }
-
-        /* --- Kontakt --- */
-        #kontakt {
-            background-color: var(--dark-card);
-            text-align: center;
-        }
-
-        .contact-info {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin-top: 50px;
-        }
-
-        .contact-item {
-            flex: 1;
-            min-width: 250px;
-        }
-
-        .contact-item h4 {
-            color: var(--primary-red);
-            margin-bottom: 10px;
-            font-family: 'Oswald', sans-serif;
-            font-size: 18px;
-        }
-
-        .contact-item p {
-            color: var(--silver-text);
-        }
-
-        /* --- Stopka --- */
-        footer {
-            background-color: rgba(0, 0, 0, 0.95);
-            padding: 40px 0;
-            text-align: center;
-            border-top: 1px solid #222;
-            font-size: 13px;
-            color: var(--silver-text);
-        }
-
-        /* Responsywność dla mniejszych ekranów */
-        @media (max-width: 768px) {
-            .hero-logo {
-                max-width: 350px;
-            }
-            .section-title {
-                font-size: 32px;
-            }
-            .services-grid {
-                flex-direction: column;
-                gap: 20px;
-            }
-            .container {
-                flex-direction: column;
-                gap: 20px;
-                text-align: center;
-            }
-            nav ul {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 15px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Działalność Nierejestrowana | Kompendium Wiedzy</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+:root {
+    --primary: #3b82f6;
+    --primary-dark: #2563eb;
+    --secondary: #f1f5f9;
+    --text: #1e293b;
+    --text-light: #64748b;
+    --white: #ffffff;
+    --bg: #f8fafc;
+    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --radius: 12px;
+    --transition: all 0.3s ease;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth;
+    font-family: 'Inter', sans-serif;
+    color: var(--text);
+    background-color: var(--bg);
+}
+body {
+    line-height: 1.6;
+}
+a {
+    text-decoration: none;
+    color: inherit;
+}
+ul {
+    list-style: none;
+}
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    color: var(--text);
+}
+section {
+    padding: 5rem 0;
+}
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: var(--white);
+    box-shadow: var(--shadow);
+    z-index: 1000;
+    transition: var(--transition);
+}
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+.nav-links a {
+    font-weight: 600;
+    color: var(--text-light);
+    transition: var(--transition);
+}
+.nav-links a:hover {
+    color: var(--primary);
+}
+.mobile-menu-btn {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text);
+}
+#hero {
+    margin-top: 80px;
+    min-height: calc(100vh - 80px);
+    display: flex;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(135deg, #eff6ff 0%, #ffffff 100%);
+}
+.hero-content h1 {
+    font-size: 4rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+.hero-content p {
+    font-size: 1.25rem;
+    color: var(--text-light);
+    margin-bottom: 2.5rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.btn {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    background: var(--primary);
+    color: var(--white);
+    font-weight: 600;
+    border-radius: 50px;
+    transition: var(--transition);
+    border: none;
+    cursor: pointer;
+}
+.btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+.card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    text-align: center;
+}
+.card:hover {
+    transform: translateY(-5px);
+}
+.card i {
+    font-size: 3rem;
+    color: var(--primary);
+    margin-bottom: 1.5rem;
+}
+.card h3 {
+    margin-bottom: 1rem;
+    font-size: 1.25rem;
+}
+.two-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+}
+.pros-cons-box {
+    background: var(--white);
+    padding: 3rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+}
+.pros-cons-box h3 {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.pros h3 {
+    color: #10b981;
+}
+.cons h3 {
+    color: #ef4444;
+}
+.check-list li {
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+}
+.check-list i {
+    margin-top: 0.25rem;
+}
+.pros .check-list i {
+    color: #10b981;
+}
+.cons .check-list i {
+    color: #ef4444;
+}
+.faq-item {
+    background: var(--white);
+    margin-bottom: 1rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+.faq-question {
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 600;
+    transition: var(--transition);
+}
+.faq-question:hover {
+    color: var(--primary);
+}
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    padding: 0 1.5rem;
+    color: var(--text-light);
+}
+.faq-item.active .faq-answer {
+    padding-bottom: 1.5rem;
+    max-height: 500px;
+}
+.faq-item.active .faq-question i {
+    transform: rotate(180deg);
+}
+footer {
+    background: var(--text);
+    color: var(--white);
+    text-align: center;
+    padding: 3rem 0;
+}
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(20px);
+    visibility: hidden;
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    will-change: opacity, visibility;
+}
+.fade-in-section.is-visible {
+    opacity: 1;
+    transform: none;
+    visibility: visible;
+}
+@media (max-width: 768px) {
+    .nav-links {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background: var(--white);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        transition: var(--transition);
+    }
+    .nav-links.active {
+        left: 0;
+    }
+    .mobile-menu-btn {
+        display: block;
+    }
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    .two-cols {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
 </head>
 <body>
 
-    <header>
-        <div class="container">
-            <a href="#" class="logo-text">DAV<span>PER</span></a>
-            <nav>
-                <ul>
-                    <li><a href="#home">Start</a></li>
-                    <li><a href="#uslugi">Usługi</a></li>
-                    <li><a href="#kontakt">Kontakt</a></li>
-                </ul>
-            </nav>
+<nav id="navbar">
+    <div class="nav-container">
+        <a href="#hero" class="logo">NiRej.</a>
+        <div class="mobile-menu-btn">
+            <i class="fas fa-bars"></i>
         </div>
-    </header>
+        <ul class="nav-links">
+            <li><a href="#co-to">Czym jest</a></li>
+            <li><a href="#warunki">Warunki</a></li>
+            <li><a href="#zalety-wady">Zalety i Wady</a></li>
+            <li><a href="#obowiazki">Obowiązki</a></li>
+            <li><a href="#dla-kogo">Dla kogo</a></li>
+            <li><a href="#faq">FAQ</a></li>
+        </ul>
+    </div>
+</nav>
 
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <img src="logo.jpg" alt="DAVPER GARAGE Logo" class="hero-logo">
-            
-            <a href="#kontakt" class="btn">Umów wizytę</a>
+<header id="hero">
+    <div class="container hero-content fade-in-section">
+        <h1>Zarabiaj bez rejestracji firmy</h1>
+        <p>Poznaj działalność nierejestrowaną – idealny sposób na legalny start własnego biznesu, testowanie pomysłów i dorabianie do etatu bez skomplikowanych formalności i składek ZUS.</p>
+        <a href="#co-to" class="btn">Dowiedz się więcej</a>
+    </div>
+</header>
+
+<section id="co-to" class="container fade-in-section">
+    <h2 class="section-title">Czym jest działalność nierejestrowana?</h2>
+    <div class="card">
+        <p style="font-size: 1.1rem; text-align: left; margin-bottom: 1rem;">Działalność nierejestrowana (lub nieewidencjonowana) to drobna działalność zarobkowa osób fizycznych. Prawo nie uznaje jej za działalność gospodarczą, co zwalnia z wielu obowiązków administracyjnych i finansowych.</p>
+        <p style="font-size: 1.1rem; text-align: left;">Jest to doskonałe rozwiązanie dla osób, które chcą sprawdzić swój pomysł na biznes na rynku, zanim zdecydują się na otwarcie pełnoprawnej firmy i ponoszenie związanych z tym stałych kosztów.</p>
+    </div>
+</section>
+
+<section id="warunki" class="container fade-in-section">
+    <h2 class="section-title">Warunki prowadzenia</h2>
+    <div class="grid">
+        <div class="card">
+            <i class="fas fa-chart-line"></i>
+            <h3>Limit przychodów</h3>
+            <p>Miesięczny przychód nie może przekroczyć 75% minimalnego wynagrodzenia za pracę. Po jego przekroczeniu masz 7 dni na rejestrację w CEIDG.</p>
         </div>
-    </section>
+        <div class="card">
+            <i class="fas fa-history"></i>
+            <h3>Okres karencji</h3>
+            <p>Nie prowadziłeś działalności gospodarczej w ciągu ostatnich 60 miesięcy (5 lat).</p>
+        </div>
+        <div class="card">
+            <i class="fas fa-user-tie"></i>
+            <h3>Osoba fizyczna</h3>
+            <p>Działalność można prowadzić wyłącznie jako osoba fizyczna, a nie jako podmiot prawny czy spółka.</p>
+        </div>
+    </div>
+</section>
 
-    <section id="uslugi">
-        <div class="container">
-            <h2 class="section-title"><span>Nasze Usługi</span></h2>
-            <div class="services-grid">
-                
-                <div class="service-card">
-                    <h3>Auto Detailing</h3>
-                    <p>Pełna korekta lakieru, nakładanie zaawansowanych powłok ceramicznych, woskowanie premium, profesjonalne czyszczenie i konserwacja wnętrza.</p>
-                </div>
-                
-                <div class="service-card">
-                    <h3>Mechanika</h3>
-                    <p>Serwis olejowy, naprawa zawieszenia i układów hamulcowych, zaawansowana diagnostyka komputerowa, serwis klimatyzacji.</p>
-                </div>
+<section id="zalety-wady" class="container fade-in-section">
+    <h2 class="section-title">Zalety i Wady</h2>
+    <div class="two-cols">
+        <div class="pros-cons-box pros">
+            <h3><i class="fas fa-thumbs-up"></i> Zalety</h3>
+            <ul class="check-list">
+                <li><i class="fas fa-check"></i> Brak wpisu do CEIDG</li>
+                <li><i class="fas fa-check"></i> Brak składek ZUS z tytułu prowadzenia działalności</li>
+                <li><i class="fas fa-check"></i> Brak zaliczek na podatek dochodowy w trakcie roku</li>
+                <li><i class="fas fa-check"></i> Bardzo uproszczona księgowość</li>
+                <li><i class="fas fa-check"></i> Bezpieczne i darmowe pole do testowania pomysłów</li>
+            </ul>
+        </div>
+        <div class="pros-cons-box cons">
+            <h3><i class="fas fa-thumbs-down"></i> Wady</h3>
+            <ul class="check-list">
+                <li><i class="fas fa-times"></i> Niskie limity miesięcznych przychodów</li>
+                <li><i class="fas fa-times"></i> Konieczność stałego monitorowania limitu</li>
+                <li><i class="fas fa-times"></i> Świadczenie usług może zostać uznane za umowę zlecenie podlegającą ZUS</li>
+                <li><i class="fas fa-times"></i> Ograniczone zaufanie w relacjach B2B z większymi firmami</li>
+            </ul>
+        </div>
+    </div>
+</section>
 
-                <div class="service-card">
-                    <h3>Pielęgnacja</h3>
-                    <p>Mycie detailingowe, pranie tapicerki skórzanej i materiałowej, zabezpieczanie felg, hydrofobizacja szyb.</p>
-                </div>
+<section id="obowiazki" class="container fade-in-section">
+    <h2 class="section-title">Główne obowiązki</h2>
+    <div class="grid">
+        <div class="card">
+            <i class="fas fa-book"></i>
+            <h3>Ewidencja sprzedaży</h3>
+            <p>Musisz prowadzić uproszczoną ewidencję sprzedaży, aby na bieżąco monitorować limit przychodów.</p>
+        </div>
+        <div class="card">
+            <i class="fas fa-file-invoice"></i>
+            <h3>Faktury i rachunki</h3>
+            <p>Na wyraźne żądanie klienta musisz wystawić rachunek lub fakturę bez VAT.</p>
+        </div>
+        <div class="card">
+            <i class="fas fa-gavel"></i>
+            <h3>Prawa konsumenta</h3>
+            <p>W relacjach z kupującymi jesteś traktowany jak przedsiębiorca (musisz uwzględniać prawo do zwrotu i reklamacji).</p>
+        </div>
+        <div class="card">
+            <i class="fas fa-calculator"></i>
+            <h3>Rozliczenie roczne</h3>
+            <p>Przychody i koszty z tej działalności musisz wykazać po zakończeniu roku w zeznaniu PIT-36.</p>
+        </div>
+    </div>
+</section>
 
+<section id="dla-kogo" class="container fade-in-section">
+    <h2 class="section-title">Dla kogo to rozwiązanie?</h2>
+    <div class="card" style="text-align: left;">
+        <p style="margin-bottom: 1rem;">Działalność nierejestrowana jest doskonałym startem dla:</p>
+        <ul class="check-list" style="margin-left: 1rem;">
+            <li><i class="fas fa-arrow-right"></i> Rękodzielników i twórców sprzedających swoje wyroby</li>
+            <li><i class="fas fa-arrow-right"></i> Korepetytorów, nauczycieli i instruktorów</li>
+            <li><i class="fas fa-arrow-right"></i> Freelancerów stawiających pierwsze kroki na rynku (grafików, programistów, copywriterów)</li>
+            <li><i class="fas fa-arrow-right"></i> Osób na etacie chcących legalnie dorabiać po godzinach</li>
+            <li><i class="fas fa-arrow-right"></i> Przyszłych przedsiębiorców sprawdzających popyt na swój produkt</li>
+        </ul>
+    </div>
+</section>
+
+<section id="faq" class="container fade-in-section">
+    <h2 class="section-title">Najczęściej zadawane pytania (FAQ)</h2>
+    <div class="faq-container">
+        <div class="faq-item">
+            <div class="faq-question">
+                Czy muszę posiadać kasę fiskalną?
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                Zazwyczaj nie. Większość działalności nierejestrowanych korzysta ze zwolnienia z kasy fiskalnej ze względu na niski obrót, z wyłączeniem wąskiej grupy towarów objętych bezwzględnym obowiązkiem jej używania (np. sprzęt RTV, perfumy).
             </div>
         </div>
-    </section>
-
-    <section id="kontakt">
-        <div class="container">
-            <h2 class="section-title"><span>Skontaktuj się</span></h2>
-            <p style="color: var(--silver-text); font-size: 16px;">Zadzwoń do nas lub odwiedź naszą stację!</p>
-            
-            <div class="contact-info">
-                <div class="contact-item">
-                    <h4>Adres</h4>
-                    <p>ul. Garażowa 15</p>
-                    <p>00-001 Miasto</p>
-                </div>
-                <div class="contact-item">
-                    <h4>Telefon</h4>
-                    <p>+48 123 456 789</p>
-                    <p>+48 987 654 321</p>
-                </div>
-                <div class="contact-item">
-                    <h4>Godziny pracy</h4>
-                    <p>Pn - Pt: 8:00 - 18:00</p>
-                    <p>Sob: 9:00 - 14:00</p>
-                </div>
+        <div class="faq-item">
+            <div class="faq-question">
+                Co się stanie, gdy przekroczę limit przychodów?
+                <i class="fas fa-chevron-down"></i>
             </div>
-            
-            <div style="margin-top: 60px;">
-                <a href="tel:+48123456789" class="btn">Zadzwoń teraz</a>
+            <div class="faq-answer">
+                Od dnia, w którym przekroczysz limit 75% płacy minimalnej w danym miesiącu, Twoja aktywność staje się działalnością gospodarczą. Masz 7 dni na dokonanie obowiązkowej rejestracji w systemie CEIDG.
             </div>
         </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 DAVPER GARAGE. Wszystkie prawa zastrzeżone.</p>
+        <div class="faq-item">
+            <div class="faq-question">
+                Czy muszę być czynnym podatnikiem VAT?
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                Nie, o ile nie przekroczysz limitu sprzedaży (200 000 zł rocznie, co i tak nie grozi przy działalności nierejestrowanej) i nie sprzedajesz usług lub towarów ustawowo wyłączonych ze zwolnienia z VAT (np. usługi jubilerskie, doradcze).
+            </div>
         </div>
-    </footer>
+        <div class="faq-item">
+            <div class="faq-question">
+                Działalność nierejestrowana a ZUS i umowa zlecenie?
+                <i class="fas fa-chevron-down"></i>
+            </div>
+            <div class="faq-answer">
+                Choć sama działalność nie podlega ZUS, to świadczenie w jej ramach usług (zlecenia) podpada pod zasady ubezpieczeń społecznych dla umów zleceń. Oznacza to potencjalny obowiązek odprowadzania składek, chyba że jesteś np. uczniem/studentem do 26 r.ż. lub masz inne tytuły do ubezpieczeń (np. pełny etat za minimalne wynagrodzenie).
+            </div>
+        </div>
+    </div>
+</section>
 
+<footer>
+    <div class="container">
+        <p>&copy; 2026 Kompendium Działalności Nierejestrowanej. Wszelkie prawa zastrzeżone.</p>
+    </div>
+</footer>
+
+<script>
+    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+    const links = document.querySelectorAll('.nav-links a');
+
+    mobileMenuBtn.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        const icon = mobileMenuBtn.querySelector('i');
+        if (navLinks.classList.contains('active')) {
+            icon.classList.remove('fa-bars');
+            icon.classList.add('fa-times');
+        } else {
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        }
+    });
+
+    links.forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            const icon = mobileMenuBtn.querySelector('i');
+            icon.classList.remove('fa-times');
+            icon.classList.add('fa-bars');
+        });
+    });
+
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) {
+            navbar.style.boxShadow = '0 4px 6px -1px rgb(0 0 0 / 0.1)';
+            navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+            navbar.style.backdropFilter = 'blur(10px)';
+        } else {
+            navbar.style.boxShadow = 'none';
+            navbar.style.background = 'var(--white)';
+            navbar.style.backdropFilter = 'none';
+        }
+    });
+
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        question.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+            faqItems.forEach(faq => faq.classList.remove('active'));
+            if (!isActive) {
+                item.classList.add('active');
+            }
+        });
+    });
+
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.15
+    };
+
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in-section').forEach(section => {
+        observer.observe(section);
+    });
+</script>
 </body>
 </html>
