@@ -1,518 +1,493 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Działalność Nierejestrowana | Kompendium Wiedzy</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<style>
-:root {
-    --primary: #3b82f6;
-    --primary-dark: #2563eb;
-    --secondary: #f1f5f9;
-    --text: #1e293b;
-    --text-light: #64748b;
-    --white: #ffffff;
-    --bg: #f8fafc;
-    --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --radius: 12px;
-    --transition: all 0.3s ease;
-}
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-html {
-    scroll-behavior: smooth;
-    font-family: 'Inter', sans-serif;
-    color: var(--text);
-    background-color: var(--bg);
-}
-body {
-    line-height: 1.6;
-}
-a {
-    text-decoration: none;
-    color: inherit;
-}
-ul {
-    list-style: none;
-}
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-}
-.section-title {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
-    color: var(--text);
-}
-section {
-    padding: 5rem 0;
-}
-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background: var(--white);
-    box-shadow: var(--shadow);
-    z-index: 1000;
-    transition: var(--transition);
-}
-.nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 80px;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-}
-.logo {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--primary);
-}
-.nav-links {
-    display: flex;
-    gap: 2rem;
-}
-.nav-links a {
-    font-weight: 600;
-    color: var(--text-light);
-    transition: var(--transition);
-}
-.nav-links a:hover {
-    color: var(--primary);
-}
-.mobile-menu-btn {
-    display: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: var(--text);
-}
-#hero {
-    margin-top: 80px;
-    min-height: calc(100vh - 80px);
-    display: flex;
-    align-items: center;
-    text-align: center;
-    background: linear-gradient(135deg, #eff6ff 0%, #ffffff 100%);
-}
-.hero-content h1 {
-    font-size: 4rem;
-    margin-bottom: 1.5rem;
-    line-height: 1.2;
-}
-.hero-content p {
-    font-size: 1.25rem;
-    color: var(--text-light);
-    margin-bottom: 2.5rem;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-}
-.btn {
-    display: inline-block;
-    padding: 1rem 2.5rem;
-    background: var(--primary);
-    color: var(--white);
-    font-weight: 600;
-    border-radius: 50px;
-    transition: var(--transition);
-    border: none;
-    cursor: pointer;
-}
-.btn:hover {
-    background: var(--primary-dark);
-    transform: translateY(-2px);
-}
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-}
-.card {
-    background: var(--white);
-    padding: 2rem;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    transition: var(--transition);
-    text-align: center;
-}
-.card:hover {
-    transform: translateY(-5px);
-}
-.card i {
-    font-size: 3rem;
-    color: var(--primary);
-    margin-bottom: 1.5rem;
-}
-.card h3 {
-    margin-bottom: 1rem;
-    font-size: 1.25rem;
-}
-.two-cols {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 3rem;
-}
-.pros-cons-box {
-    background: var(--white);
-    padding: 3rem;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-}
-.pros-cons-box h3 {
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-.pros h3 {
-    color: #10b981;
-}
-.cons h3 {
-    color: #ef4444;
-}
-.check-list li {
-    margin-bottom: 1rem;
-    display: flex;
-    align-items: flex-start;
-    gap: 1rem;
-}
-.check-list i {
-    margin-top: 0.25rem;
-}
-.pros .check-list i {
-    color: #10b981;
-}
-.cons .check-list i {
-    color: #ef4444;
-}
-.faq-item {
-    background: var(--white);
-    margin-bottom: 1rem;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    overflow: hidden;
-}
-.faq-question {
-    padding: 1.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-    font-weight: 600;
-    transition: var(--transition);
-}
-.faq-question:hover {
-    color: var(--primary);
-}
-.faq-answer {
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease;
-    padding: 0 1.5rem;
-    color: var(--text-light);
-}
-.faq-item.active .faq-answer {
-    padding-bottom: 1.5rem;
-    max-height: 500px;
-}
-.faq-item.active .faq-question i {
-    transform: rotate(180deg);
-}
-footer {
-    background: var(--text);
-    color: var(--white);
-    text-align: center;
-    padding: 3rem 0;
-}
-.fade-in-section {
-    opacity: 0;
-    transform: translateY(20px);
-    visibility: hidden;
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-    will-change: opacity, visibility;
-}
-.fade-in-section.is-visible {
-    opacity: 1;
-    transform: none;
-    visibility: visible;
-}
-@media (max-width: 768px) {
-    .nav-links {
-        position: fixed;
-        top: 80px;
-        left: -100%;
-        width: 100%;
-        height: calc(100vh - 80px);
-        background: var(--white);
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        transition: var(--transition);
-    }
-    .nav-links.active {
-        left: 0;
-    }
-    .mobile-menu-btn {
-        display: block;
-    }
-    .hero-content h1 {
-        font-size: 2.5rem;
-    }
-    .two-cols {
-        grid-template-columns: 1fr;
-    }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opieka położnej podczas porodu | Kompendium</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #d81b60;
+            --primary-light: #fce4ec;
+            --secondary-color: #f06292;
+            --bg-color: #fdfdfd;
+            --gray-light: #f5f5f5;
+            --text-main: #333333;
+            --text-muted: #666666;
+            --white: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-main);
+            background-color: var(--bg-color);
+        }
+
+        h1, h2, h3, h4 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        p {
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            color: var(--text-muted);
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+            transition: var(--transition);
+        }
+
+        a:hover {
+            color: var(--secondary-color);
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(5px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 5%;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        header {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 5%;
+            background: linear-gradient(135deg, var(--primary-light) 0%, var(--bg-color) 100%);
+        }
+
+        .hero-text {
+            flex: 1;
+            padding-right: 2rem;
+            animation: fadeIn 1s ease-out;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-radius: 50px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(216, 27, 96, 0.3);
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        .hero-image {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            animation: fadeIn 1s ease-out 0.3s backwards;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 600px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        section {
+            padding: 6rem 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            margin: 1rem auto 0;
+            border-radius: 2px;
+        }
+
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: var(--white);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+            border: 1px solid var(--gray-light);
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(216, 27, 96, 0.08);
+            border-color: var(--primary-light);
+        }
+
+        .card i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--text-main);
+        }
+
+        .content-split {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+
+        .content-split.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .split-text {
+            flex: 1;
+        }
+
+        .split-image {
+            flex: 1;
+        }
+
+        .split-image img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .list-styled {
+            list-style: none;
+            margin-top: 1.5rem;
+        }
+
+        .list-styled li {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 1rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .list-styled li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--secondary-color);
+        }
+
+        .bg-light {
+            background-color: var(--primary-light);
+            border-radius: 30px;
+            margin: 2rem 5%;
+            padding: 5rem;
+        }
+
+        .accordion-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .accordion {
+            background-color: var(--white);
+            color: var(--text-main);
+            cursor: pointer;
+            padding: 1.5rem;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 1.1rem;
+            font-weight: 500;
+            transition: var(--transition);
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .accordion:hover, .active {
+            background-color: var(--gray-light);
+            color: var(--primary-color);
+        }
+
+        .accordion::after {
+            content: '\f078';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .active::after {
+            transform: rotate(180deg);
+        }
+
+        .panel {
+            padding: 0 1.5rem;
+            background-color: var(--white);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            border-radius: 0 0 10px 10px;
+            margin-top: -1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .panel p {
+            padding: 1.5rem 0;
+            margin: 0;
+        }
+
+        footer {
+            background-color: var(--text-main);
+            color: var(--white);
+            text-align: center;
+            padding: 3rem 5%;
+        }
+
+        footer p {
+            color: #aaaaaa;
+            margin: 0;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 992px) {
+            .hero-text h1 { font-size: 2.8rem; }
+            .content-split, .content-split.reverse { flex-direction: column; gap: 2rem; }
+            .bg-light { padding: 3rem 2rem; }
+        }
+
+        @media (max-width: 768px) {
+            header { flex-direction: column; text-align: center; justify-content: center; padding-top: 5rem; }
+            .hero-text { padding-right: 0; }
+            .nav-links { display: none; } 
+            .hero-image { margin-top: 3rem; }
+        }
+    </style>
 </head>
 <body>
 
-<nav id="navbar">
-    <div class="nav-container">
-        <a href="#hero" class="logo">Młody_Domxon6767</a>
-        <div class="mobile-menu-btn">
-            <i class="fas fa-bars"></i>
+    <nav>
+        <div class="logo">
+            <i class="fa-solid fa-person-breastfeeding"></i>
+            MedEdu
         </div>
         <ul class="nav-links">
-            <li><a href="#co-to">Czym jest</a></li>
-            <li><a href="#warunki">Warunki</a></li>
-            <li><a href="#zalety-wady">Zalety i Wady</a></li>
-            <li><a href="#obowiazki">Obowiązki</a></li>
-            <li><a href="#dla-kogo">Dla kogo</a></li>
+            <li><a href="#rola">Rola położnej</a></li>
+            <li><a href="#epizjotomia">Epizjotomia</a></li>
+            <li><a href="#praktyki">Dobre praktyki</a></li>
             <li><a href="#faq">FAQ</a></li>
         </ul>
-    </div>
-</nav>
+    </nav>
 
-<header id="hero">
-    <div class="container hero-content fade-in-section">
-        <h1>Zarabiaj bez rejestracji firmy</h1>
-        <p>Poznaj działalność nierejestrowaną – idealny sposób na legalny start własnego biznesu, testowanie pomysłów i dorabianie do etatu bez skomplikowanych formalności i składek ZUS.</p>
-        <a href="#co-to" class="btn">Dowiedz się więcej</a>
-    </div>
-</header>
+    <header>
+        <div class="hero-text">
+            <h1>Opieka położnej podczas porodu</h1>
+            <p>Merytoryczne kompendium dla studentów położnictwa III roku. Poznaj standardy opieki okołoporodowej, procedury medyczne oraz psychologiczne aspekty wsparcia rodzącej.</p>
+            <a href="#rola" class="btn">Rozpocznij naukę <i class="fa-solid fa-arrow-down ml-2"></i></a>
+        </div>
+        <div class="hero-image">
+            <img src="https://images.unsplash.com/photo-1555252834-311823eb91ce?auto=format&fit=crop&w=1200&q=80" alt="Dłonie trzymające stopy noworodka">
+        </div>
+    </header>
 
-<section id="co-to" class="container fade-in-section">
-    <h2 class="section-title">Czym jest działalność nierejestrowana?</h2>
-    <div class="card">
-        <p style="font-size: 1.1rem; text-align: left; margin-bottom: 1rem;">Działalność nierejestrowana (lub nieewidencjonowana) to drobna działalność zarobkowa osób fizycznych. Prawo nie uznaje jej za działalność gospodarczą, co zwalnia z wielu obowiązków administracyjnych i finansowych.</p>
-        <p style="font-size: 1.1rem; text-align: left;">Jest to doskonałe rozwiązanie dla osób, które chcą sprawdzić swój pomysł na biznes na rynku, zanim zdecydują się na otwarcie pełnoprawnej firmy i ponoszenie związanych z tym stałych kosztów.</p>
-    </div>
-</section>
-
-<section id="warunki" class="container fade-in-section">
-    <h2 class="section-title">Warunki prowadzenia</h2>
-    <div class="grid">
-        <div class="card">
-            <i class="fas fa-chart-line"></i>
-            <h3>Limit przychodów</h3>
-            <p>Miesięczny przychód nie może przekroczyć 75% minimalnego wynagrodzenia za pracę. Po jego przekroczeniu masz 7 dni na rejestrację w CEIDG.</p>
-        </div>
-        <div class="card">
-            <i class="fas fa-history"></i>
-            <h3>Okres karencji</h3>
-            <p>Nie prowadziłeś działalności gospodarczej w ciągu ostatnich 60 miesięcy (5 lat).</p>
-        </div>
-        <div class="card">
-            <i class="fas fa-user-tie"></i>
-            <h3>Osoba fizyczna</h3>
-            <p>Działalność można prowadzić wyłącznie jako osoba fizyczna, a nie jako podmiot prawny czy spółka.</p>
-        </div>
-    </div>
-</section>
-
-<section id="zalety-wady" class="container fade-in-section">
-    <h2 class="section-title">Zalety i Wady</h2>
-    <div class="two-cols">
-        <div class="pros-cons-box pros">
-            <h3><i class="fas fa-thumbs-up"></i> Zalety</h3>
-            <ul class="check-list">
-                <li><i class="fas fa-check"></i> Brak wpisu do CEIDG</li>
-                <li><i class="fas fa-check"></i> Brak składek ZUS z tytułu prowadzenia działalności</li>
-                <li><i class="fas fa-check"></i> Brak zaliczek na podatek dochodowy w trakcie roku</li>
-                <li><i class="fas fa-check"></i> Bardzo uproszczona księgowość</li>
-                <li><i class="fas fa-check"></i> Bezpieczne i darmowe pole do testowania pomysłów</li>
-            </ul>
-        </div>
-        <div class="pros-cons-box cons">
-            <h3><i class="fas fa-thumbs-down"></i> Wady</h3>
-            <ul class="check-list">
-                <li><i class="fas fa-times"></i> Niskie limity miesięcznych przychodów</li>
-                <li><i class="fas fa-times"></i> Konieczność stałego monitorowania limitu</li>
-                <li><i class="fas fa-times"></i> Świadczenie usług może zostać uznane za umowę zlecenie podlegającą ZUS</li>
-                <li><i class="fas fa-times"></i> Ograniczone zaufanie w relacjach B2B z większymi firmami</li>
-            </ul>
-        </div>
-    </div>
-</section>
-
-<section id="obowiazki" class="container fade-in-section">
-    <h2 class="section-title">Główne obowiązki</h2>
-    <div class="grid">
-        <div class="card">
-            <i class="fas fa-book"></i>
-            <h3>Ewidencja sprzedaży</h3>
-            <p>Musisz prowadzić uproszczoną ewidencję sprzedaży, aby na bieżąco monitorować limit przychodów.</p>
-        </div>
-        <div class="card">
-            <i class="fas fa-file-invoice"></i>
-            <h3>Faktury i rachunki</h3>
-            <p>Na wyraźne żądanie klienta musisz wystawić rachunek lub fakturę bez VAT.</p>
-        </div>
-        <div class="card">
-            <i class="fas fa-gavel"></i>
-            <h3>Prawa konsumenta</h3>
-            <p>W relacjach z kupującymi jesteś traktowany jak przedsiębiorca (musisz uwzględniać prawo do zwrotu i reklamacji).</p>
-        </div>
-        <div class="card">
-            <i class="fas fa-calculator"></i>
-            <h3>Rozliczenie roczne</h3>
-            <p>Przychody i koszty z tej działalności musisz wykazać po zakończeniu roku w zeznaniu PIT-36.</p>
-        </div>
-    </div>
-</section>
-
-<section id="dla-kogo" class="container fade-in-section">
-    <h2 class="section-title">Dla kogo to rozwiązanie?</h2>
-    <div class="card" style="text-align: left;">
-        <p style="margin-bottom: 1rem;">Działalność nierejestrowana jest doskonałym startem dla:</p>
-        <ul class="check-list" style="margin-left: 1rem;">
-            <li><i class="fas fa-arrow-right"></i> Rękodzielników i twórców sprzedających swoje wyroby</li>
-            <li><i class="fas fa-arrow-right"></i> Korepetytorów, nauczycieli i instruktorów</li>
-            <li><i class="fas fa-arrow-right"></i> Freelancerów stawiających pierwsze kroki na rynku (grafików, programistów, copywriterów)</li>
-            <li><i class="fas fa-arrow-right"></i> Osób na etacie chcących legalnie dorabiać po godzinach</li>
-            <li><i class="fas fa-arrow-right"></i> Przyszłych przedsiębiorców sprawdzających popyt na swój produkt</li>
-        </ul>
-    </div>
-</section>
-
-<section id="faq" class="container fade-in-section">
-    <h2 class="section-title">Najczęściej zadawane pytania (FAQ)</h2>
-    <div class="faq-container">
-        <div class="faq-item">
-            <div class="faq-question">
-                Czy muszę posiadać kasę fiskalną?
-                <i class="fas fa-chevron-down"></i>
+    <main>
+        <section id="rola">
+            <h2 class="section-title">Rola położnej przy porodzie</h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <i class="fa-solid fa-hands-holding-child"></i>
+                    <h3>Wsparcie fizyczne i psychiczne</h3>
+                    <p>Zapewnienie poczucia bezpieczeństwa, łagodzenie bólu niefarmakologicznymi metodami, stymulacja do aktywności oraz budowanie relacji z rodzącą opartych na zaufaniu i empatii.</p>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-heart-pulse"></i>
+                    <h3>Monitorowanie stanu zdrowia</h3>
+                    <p>Regularna ocena tętna płodu (KTG), kontrola parametrów życiowych matki (ciśnienie, tętno, temperatura), ocena postępu porodu oraz wczesne rozpoznawanie patologii.</p>
+                </div>
+                <div class="card">
+                    <i class="fa-solid fa-comments-medical"></i>
+                    <h3>Edukacja i komunikacja</h3>
+                    <p>Ciągłe informowanie pacjentki o etapie porodu, wyjaśnianie konieczności wykonywania procedur medycznych, instruktaż oddechu oraz technik parcia w II okresie porodu.</p>
+                </div>
             </div>
-            <div class="faq-answer">
-                Zazwyczaj nie. Większość działalności nierejestrowanych korzysta ze zwolnienia z kasy fiskalnej ze względu na niski obrót, z wyłączeniem wąskiej grupy towarów objętych bezwzględnym obowiązkiem jej używania (np. sprzęt RTV, perfumy).
-            </div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question">
-                Co się stanie, gdy przekroczę limit przychodów?
-                <i class="fas fa-chevron-down"></i>
-            </div>
-            <div class="faq-answer">
-                Od dnia, w którym przekroczysz limit 75% płacy minimalnej w danym miesiącu, Twoja aktywność staje się działalnością gospodarczą. Masz 7 dni na dokonanie obowiązkowej rejestracji w systemie CEIDG.
-            </div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question">
-                Czy muszę być czynnym podatnikiem VAT?
-                <i class="fas fa-chevron-down"></i>
-            </div>
-            <div class="faq-answer">
-                Nie, o ile nie przekroczysz limitu sprzedaży (200 000 zł rocznie, co i tak nie grozi przy działalności nierejestrowanej) i nie sprzedajesz usług lub towarów ustawowo wyłączonych ze zwolnienia z VAT (np. usługi jubilerskie, doradcze).
-            </div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question">
-                Działalność nierejestrowana a ZUS i umowa zlecenie?
-                <i class="fas fa-chevron-down"></i>
-            </div>
-            <div class="faq-answer">
-                Choć sama działalność nie podlega ZUS, to świadczenie w jej ramach usług (zlecenia) podpada pod zasady ubezpieczeń społecznych dla umów zleceń. Oznacza to potencjalny obowiązek odprowadzania składek, chyba że jesteś np. uczniem/studentem do 26 r.ż. lub masz inne tytuły do ubezpieczeń (np. pełny etat za minimalne wynagrodzenie).
-            </div>
-        </div>
-    </div>
-</section>
+        </section>
 
-<footer>
-    <div class="container">
-        <p>&copy; 2026 Kompendium Działalności Nierejestrowanej. Wszelkie prawa zastrzeżone.</p>
-    </div>
-</footer>
+        <section id="epizjotomia" class="bg-light">
+            <div class="content-split">
+                <div class="split-image">
+                    <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=800&q=80" alt="Personel medyczny w szpitalu">
+                </div>
+                <div class="split-text">
+                    <h2>Nacinanie krocza (epizjotomia)</h2>
+                    <p><strong>Definicja:</strong> Zabieg chirurgiczny polegający na nacięciu ściany pochwy, mięśni dna miednicy oraz skóry krocza w celu poszerzenia kanału rodnego i ułatwienia wydobycia płodu.</p>
+                    
+                    <ul class="list-styled">
+                        <li><strong>Wskazania medyczne:</strong> Zagrożenie zamartwicą płodu (np. patologiczny zapis KTG), konieczność skrócenia II okresu porodu, poród zabiegowy (kleszcze, próżniociąg), dystocja barkowa.</li>
+                        <li><strong>Przebieg zabiegu:</strong> Wykonywany najczęściej w formie nacięcia środkowo-bocznego (mediolateralis) w szczycie skurczu, kiedy tkanki są maksymalnie napięte i naturalnie znieczulone.</li>
+                        <li><strong>Możliwe powikłania:</strong> Krwotok, krwiaki, zakażenie rany, przedłużone gojenie, uszkodzenie zwieracza odbytu, przewlekły ból i dyspareunia.</li>
+                        <li><strong>Aktualne podejście:</strong> Zgodnie z rekomendacjami WHO oraz PTG odchodzi się od rutynowego nacinania krocza. Promuje się techniki ochrony krocza i pozycje wertykalne. Dopuszczalny odsetek epizjotomii szacuje się na ok. 10-20%.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
-<script>
-    const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-    const navLinks = document.querySelector('.nav-links');
-    const links = document.querySelectorAll('.nav-links a');
+        <section id="praktyki">
+            <h2 class="section-title">Zalecenia i dobre praktyki</h2>
+            <div class="content-split reverse">
+                <div class="split-image">
+                    <img src="https://images.unsplash.com/photo-1584820927498-cafe4c158b43?auto=format&fit=crop&w=800&q=80" alt="Opieka medyczna i wsparcie">
+                </div>
+                <div class="split-text">
+                    <p>Nowoczesne położnictwo opiera się na medycynie opartej na faktach (EBM) oraz poszanowaniu praw pacjentki. Główne zasady obejmują:</p>
+                    <ul class="list-styled">
+                        <li><strong>Swoboda poruszania się:</strong> Zachęcanie rodzącej do przyjmowania pozycji wertykalnych, które wykorzystują siłę grawitacji, poprawiają ukrwienie łożyska i zwiększają wymiary miednicy.</li>
+                        <li><strong>Ochrona krocza:</strong> Stosowanie ciepłych okładów w II okresie porodu, odpowiednie kierowanie parciem i unikanie przymusowej pozycji litotomijnej.</li>
+                        <li><strong>Opóźnione odpępnienie:</strong> Przecięcie pępowiny po ustaniu tętnienia (minimum 1-3 minuty po porodzie), co zmniejsza ryzyko anemii u noworodka.</li>
+                        <li><strong>Kontakt "skóra do skóry" (STS):</strong> Nieprzerwany kontakt matki z dzieckiem trwający min. 2 godziny po porodzie fizjologicznym, sprzyjający kolonizacji flory bakteryjnej i inicjacji laktacji.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
-    mobileMenuBtn.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        const icon = mobileMenuBtn.querySelector('i');
-        if (navLinks.classList.contains('active')) {
-            icon.classList.remove('fa-bars');
-            icon.classList.add('fa-times');
-        } else {
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
-        }
-    });
+        <section id="znaczenie" class="bg-light" style="text-align: center; padding: 4rem 2rem;">
+            <h2>Znaczenie opieki położnej</h2>
+            <p style="max-width: 800px; margin: 0 auto; font-size: 1.1rem; color: var(--text-main);">
+                Położna to niezależny specjalista, którego kompetencje wykraczają poza samo przyjęcie porodu. To przewodnik, który przeprowadza kobietę przez jedno z najważniejszych doświadczeń w życiu. Profesjonalna, empatyczna i oparta na aktualnej wiedzy opieka położnej minimalizuje ryzyko interwencji medycznych, zmniejsza traumę okołoporodową i realnie wpływa na dobrostan fizyczny oraz psychiczny matki i dziecka.
+            </p>
+        </section>
 
-    links.forEach(link => {
-        link.addEventListener('click', () => {
-            navLinks.classList.remove('active');
-            const icon = mobileMenuBtn.querySelector('i');
-            icon.classList.remove('fa-times');
-            icon.classList.add('fa-bars');
+        <section id="faq">
+            <h2 class="section-title">Najczęściej zadawane pytania (FAQ)</h2>
+            <div class="accordion-container">
+                <button class="accordion">Jakie pozycje wertykalne są najbardziej polecane do ochrony krocza?</button>
+                <div class="panel">
+                    <p>Do najkorzystniejszych pozycji należą: pozycja kolankowo-łokciowa, klęcząca z asystą, pozycja kuczna oraz w zwisie (np. z wykorzystaniem chusty). Zmniejszają one napięcie tkanek krocza, równomiernie rozkładając nacisk główki płodu.</p>
+                </div>
+
+                <button class="accordion">Kiedy epizjotomia jest bezwzględnie konieczna?</button>
+                <div class="panel">
+                    <p>Epizjotomię wykonuje się bezwzględnie w przypadku nagłego zagrożenia życia płodu (bradykardia, nieprawidłowy zapis KTG wymagający natychmiastowego zakończenia porodu), podczas porodu zabiegowego (użycie kleszczy lub próżniociągu) oraz przy dystocji barkowej.</p>
+                </div>
+
+                <button class="accordion">Jakie są niefarmakologiczne metody łagodzenia bólu porodowego?</button>
+                <div class="panel">
+                    <p>Położna może zaproponować m.in.: immersję wodną (prysznic, wanna), techniki oddechowe i relaksacyjne, masaż okolicy lędźwiowo-krzyżowej, aromaterapię, muzykoterapię, a także korzystanie ze sprzętów takich jak piłka (fitball) czy drabinki.</p>
+                </div>
+
+                <button class="accordion">Jak ocenia się postęp porodu w I okresie?</button>
+                <div class="panel">
+                    <p>Postęp porodu ocenia się poprzez systematyczne badanie wewnętrzne określające rozwarcie ujścia szyjki macicy (w centymetrach od 0 do 10), jej skrócenie, a także punkt przodujący główki względem linii międzykolcowej oraz ocenę charakteru skurczów macicy.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="logo" style="justify-content: center; margin-bottom: 1rem; color: var(--white);">
+            <i class="fa-solid fa-person-breastfeeding"></i> MedEdu
+        </div>
+        <p>&copy; 2026 Projekt edukacyjny dla studentów położnictwa. Utworzono dla celów naukowych.</p>
+    </footer>
+
+    <script>
+        const accordions = document.querySelectorAll(".accordion");
+        accordions.forEach(acc => {
+            acc.addEventListener("click", function() {
+                this.classList.toggle("active");
+                const panel = this.nextElementSibling;
+                if (panel.style.maxHeight) {
+                    panel.style.maxHeight = null;
+                } else {
+                    panel.style.maxHeight = panel.scrollHeight + "px";
+                }
+            });
         });
-    });
-
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.style.boxShadow = '0 4px 6px -1px rgb(0 0 0 / 0.1)';
-            navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-            navbar.style.backdropFilter = 'blur(10px)';
-        } else {
-            navbar.style.boxShadow = 'none';
-            navbar.style.background = 'var(--white)';
-            navbar.style.backdropFilter = 'none';
-        }
-    });
-
-    const faqItems = document.querySelectorAll('.faq-item');
-    faqItems.forEach(item => {
-        const question = item.querySelector('.faq-question');
-        question.addEventListener('click', () => {
-            const isActive = item.classList.contains('active');
-            faqItems.forEach(faq => faq.classList.remove('active'));
-            if (!isActive) {
-                item.classList.add('active');
-            }
-        });
-    });
-
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.15
-    };
-
-    const observer = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    document.querySelectorAll('.fade-in-section').forEach(section => {
-        observer.observe(section);
-    });
-</script>
+    </script>
 </body>
 </html>
